@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 
 import Comum.Conexao;
+import Comum.MsgReq;
 
 public class Servidor {
 
@@ -23,15 +24,17 @@ public class Servidor {
     }
 
     public static void main(String args[]) {
+        
+        
         String texto;
         String resposta = "Servidor Envia: Ol�, Cliente ";
+        MsgReq requisicao =  new MsgReq();
         new Servidor();
         if (connect()) {
-            for (int i = 0; i < 10; i++) {
-                texto = c.receive(client_socket);                     //
-                System.out.println(texto);                            // fase de dados
-                c.send(client_socket, resposta);
-            }
+            requisicao = (MsgReq) c.receive(client_socket);
+            System.out.println("OP1: " + requisicao.getOp1());
+            System.out.println("Operação: " + requisicao.getOperacao());
+            System.out.println("OP1: " + requisicao.getOp2());
             try {
                 client_socket.close();
                 serversocket.close();

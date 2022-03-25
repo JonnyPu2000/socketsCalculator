@@ -4,15 +4,26 @@ import java.io.Serializable;
 
 public class MsgReq implements Serializable {
 
-    private String operacao;
+    private char operacao;
     private float op1;
     private float op2;
 
-    public String getOperacao() {
+    public MsgReq(char operacao,Float op1, Float op2) {
+        this.operacao = operacao;
+        this.op1 = op1;
+        this.op2 = op2;
+    }
+
+    
+    public MsgReq() {
+       
+    }
+
+    public char getOperacao() {
         return this.operacao;
     }
 
-    public void setOperacao(String operacao) {
+    public void setOperacao(char operacao) {
         this.operacao = operacao;
     }
 
