@@ -26,8 +26,7 @@ public class Servidor {
     public static void main(String args[]) {
         
         
-        String texto;
-        String resposta = "Servidor Envia: Ol�, Cliente ";
+        
         MsgReq requisicao =  new MsgReq();
         new Servidor();
         if (connect()) {
