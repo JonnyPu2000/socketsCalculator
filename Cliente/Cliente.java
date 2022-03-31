@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Comum.Conexao;
 import Comum.MsgReq;
+import Comum.MsgResp;
 
 public class Cliente {
 
@@ -24,6 +25,8 @@ public class Cliente {
 
     public static void main(String args[]){
 
+        MsgResp resposta = new MsgResp();
+
         Scanner entrada =  new Scanner(System.in);
         char  op;
         Float num1;
@@ -42,15 +45,33 @@ public class Cliente {
         num2 = entrada.nextFloat();
         
         MsgReq msgReq = new MsgReq(op,num1,num2);
-        c.send(socket, msgReq);
+        
 
         String texto;
         entrada.close();
         new Cliente();
-        
+        c.send(socket, msgReq);
         
                          // fase de dados
         System.out.println("Enviando " + num1 + op + num2);
+        
+        
+
+        resposta = (MsgResp) c.receive(socket);
+
+        if (resposta.getStatus() == 0) {
+            System.out.println("Status:"+ resposta.getStatus() + "\nResposta da Operação: " + resposta.getResultado());
+        }
+        if (resposta.getStatus() == 1) {
+
+            System.out.println("Operação Inválida! \nTente Novamente");
+            
+        }
+        if(resposta.getStatus() == 2){
+
+            System.out.println("Divisão Por 0! \nTente Novamente");
+        }
+        
         
         try {
             socket.close();                               // fase de desconex�o

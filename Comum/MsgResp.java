@@ -7,6 +7,17 @@ public class MsgResp implements Serializable{
     private Float resultado;
     private int status;
 
+    public MsgResp(Float resultado, int status){
+
+        resultado =  this.resultado;
+        status = this.status;
+        
+    }
+
+    public MsgResp (){
+        
+    }
+
     public Float getResultado() {
         return this.resultado;
     }
